@@ -3,7 +3,7 @@ var circle;
 let b;
 let i;
 let x = [];
-let lives = 3;
+let lives = 5;
 let power = true;
 let chance;
 function setup(){
@@ -139,9 +139,9 @@ function draw(){
   }
     drawSprites();
     document.getElementById("lives").innerHTML = lives;
-    if (power == true)
+   /* if (power == true)
     {
     setTimeout(powerup(), 10000)
     power = false
-    }
+    }*/
 }

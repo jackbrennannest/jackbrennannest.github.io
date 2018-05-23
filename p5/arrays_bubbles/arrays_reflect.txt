@@ -1,8 +1,0 @@
-Jack Brennan
-arrays reflection
-
-    Using arrays to make multiple bubbles allows you to make an unlimited amount of bubbles in a very short code. for example, with
-a single for loop I was able to make 1000 bubbles of different sizes and colors insted of having to create each one of the bubbles
-individualy. The algorythem that I use was basicly a draw function after a for loop that defined the properties of each bubble in the
-array. One struggle that I had while creating this program was that in the begining the program didn't work at all. No canvas or
-bubbles would show up on the screen. I don't actually know what fixed this but after tinkering with this code it was eventually fixed.
