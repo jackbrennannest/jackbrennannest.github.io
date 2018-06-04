@@ -1,0 +1,8 @@
+Jack Brennan
+Bubbles Reflection
+
+    A javascript objects are single variables that contain multible different properties like diameter and color. The advantage of
+using an object is that you are able to use only one variable for multiple different valuse in order to make an image or something
+else of that nature. I didn't have any difficulty in using objects but my main problem was that I was not able to run the program.
+This was because I kept running the apache50 from the empty-example file insted of from the p5 directory. Once I was told that this
+was the problem I was able to run the program.
