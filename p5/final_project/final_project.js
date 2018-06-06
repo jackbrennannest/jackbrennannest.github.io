@@ -72,11 +72,6 @@ document.getElementById("lives").innerHTML = lives;
 function bumpy()
 {
 circle.velocity.y *= -1;
-if (chance != 2)
-circle.velocity.x *= (Math.random() / 4) + .87;
-else
-circle.velocity.x *= -1
-
 }
 function bumpx()
 {
@@ -89,7 +84,7 @@ function bumpx()
 }
 
 function xf(){
-    if (circle.position.x + 25 < brick[i].position.x || circle.position.x > brick[i].position.x + 83 )
+    if ((circle.position.x + 25 < brick[i].position.x && circle.velocity.x > 0) || (circle.position.x > brick[i].position.x + 83 && circle.velocity.x < 0))
     {
     circle.velocity.x *= -1
     }
