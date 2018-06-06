@@ -23,7 +23,7 @@ function brickfill(){
 
     for (i = 0;i < a;i++){
          b = createSprite(
-            (g - (i * (e + l))), (70),
+            (g - (i * (e + l))), (70 + 5 *(i % 2)),
             (e), (f))
             b.shapeColor = color(255);
             brick.add(b)
@@ -31,7 +31,7 @@ function brickfill(){
     for (i = a;i < c;i++)
     {
          b = createSprite(
-            (j - ((i - 10) * (e + l))), (110),
+            (j - ((i - 10) * (e + l))), (110 + 5 *(i % 2)),
             (e), (f))
             b.shapeColor = color(255);
             brick.add(b)
@@ -39,7 +39,7 @@ function brickfill(){
     for (i = c;i < d;i++)
     {
          b = createSprite(
-            (k - ((i - 20) * (e + l))), (150),
+            (k - ((i - 20) * (e + l))), (150 + 5 *(i % 2)),
             (e), (f))
             b.shapeColor = color(255);
             brick.add(b)
@@ -65,19 +65,17 @@ function setup(){
     thicc.shapeColor = color(255)
     circle.shapeColor = color(255);
     circle.velocity.x = 5;
-    circle.velocity.y = 5;
+    circle.velocity.y = 7;
 
 document.getElementById("lives").innerHTML = lives;
 }
 function bumpy()
 {
 circle.velocity.y *= -1;
-    if (circle.velocity.x < 0){
-        circle.velocity.x = random(-3, -5);
-    }
-    else{
-        circle.velocity.x = random(3, 5);
-    }
+if (chance != 2)
+circle.velocity.x *= (Math.random() / 4) + .87;
+else
+circle.velocity.x *= -1
 
 }
 function bumpx()
@@ -89,30 +87,31 @@ function bumpx()
         circle.velocity.x = random(-3, -5);
     }
 }
-function boom()
-{
-    brick[i].remove();
-    circle.velocity.y *= -1
-}
+
 function xf(){
+    if (circle.position.x + 25 < brick[i].position.x || circle.position.x > brick[i].position.x + 83 )
+    {
+    circle.velocity.x *= -1
+    }
+    else
+    {
+    circle.velocity.y *= -1;
+    }
     x[i] += -50;
-    if (x == 205){
+    if (x[i] == 205){
         brick[i].shapeColor = color(205)
-        circle.velocity.y *= -1
     }
     else if (x[i] == 155){
         brick[i].shapeColor = color(155)
-        circle.velocity.y *= -1
     }
     else if (x[i] == 105){
         brick[i].shapeColor = color(105)
-        circle.velocity.y *= -1
     }
     else if (x[i] == 55){
         x.splice(i, 1);
-        boom()
-        z += 1;
+        brick[i].remove();
     }
+
 }
 function powerup()
     {
@@ -190,7 +189,7 @@ function draw(){
         thicctrack = false;
         setup();
     }
-    if (level == 3 && brick.length == 0){
+    else if (level == 3 && brick.length == 0){
         circle.remove()
         platform.remove()
         a = 10;
@@ -204,7 +203,7 @@ function draw(){
         thicctrack = false;
         setup();
     }
-    if (level == 4 && brick.length == 0){
+    else if (level == 4 && brick.length == 0){
         circle.remove()
         platform.remove()
         a = 10;
@@ -218,8 +217,9 @@ function draw(){
         thicctrack = false;
         setup();
     }
-    if (level == 5)
+    else if (level == 5)
     {
+        document.getElementById("game").innerHTML = "You Win!!!!!!!!!!"
 
     }
     if (circle.position.y >= height) {
@@ -229,7 +229,7 @@ function draw(){
     document.getElementById("lives").innerHTML = lives;
   }
   if (circle.position.x >= width) {
-    bumpx()
+    circle.velocity.x *= -1
     circle.position.x = width;
   }
   if (circle.position.y <= 0) {
@@ -237,7 +237,7 @@ function draw(){
     circle.position.y = 0;
   }
   if (circle.position.x <= 0) {
-    bumpx()
+    circle.velocity.x *= -1
     circle.position.x = 0;
   }
 if (thiccTrack == true)
@@ -268,12 +268,14 @@ if ( q %  900 == 0)
 {
     powerup()
 }
-if ((q - 280) % 900 == 0 && q % 900 != 0)
+
+else if ((q - 500) % 900 == 0)
 {
     if (chance == 2)
     {
-    circle.velocity.x *= 1/3
-    circle.velocity.y *= 1/3
+    circle.velocity.x *= (1/3)
+    circle.velocity.y *= (1/3)
+    chance = 80085
     }
     else if (chance == 1)
     {
